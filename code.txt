@@ -1,0 +1,187 @@
+#include <stdio.h>
+
+int main() {
+
+    int bill = 0;
+    int choice, quantity;
+    int continueOrder;
+    int couponChoice;
+    float discountAmount = 0;
+    int i1,i2,i3,i4,i5,i6,i7,i8,i9,i10;
+    i1=i2=i3=i4=i5=i6=i7=i8=i9=i10=0;
+    
+    do {
+
+        printf("\n------ MENU ------\n");
+        printf("1. Pizza     - Rs.150\n");
+        printf("2. Burger    - Rs.90\n");
+        printf("3. Pasta     - Rs.120\n");
+        printf("4. Sandwich  - Rs.80\n");
+        printf("5. Fries     - Rs.90\n");
+        printf("6. Vada Pav  - Rs.20\n");
+        printf("7. Tacos     - Rs.75\n");
+        printf("8. Salad     - Rs.90\n");
+        printf("9. Samosa    - Rs.25\n");
+        printf("10. Wrap     - Rs.115\n");
+        printf("-------------------\n");
+
+        printf("Enter your choice (1-10): ");
+        scanf("%d", &choice);
+
+        printf("Enter quantity: ");
+        scanf("%d", &quantity);
+
+        switch(choice) {
+
+            case 1:
+                bill += 150 * quantity;
+                i1 += quantity;
+                break;
+
+            case 2:
+                bill += 90 * quantity;
+                i2 += quantity;
+                break;
+
+            case 3:
+                bill += 120 * quantity;
+                i3 += quantity;
+                break;
+
+            case 4:
+                bill += 80 * quantity;
+                i4 += quantity;
+                break;
+
+            case 5:
+                bill += 90 * quantity;
+                i5 += quantity;
+                break;
+                
+            case 6:
+                bill += 20 * quantity;
+                i6 += quantity;
+                break;
+                
+            case 7:
+                bill += 75 * quantity;
+                i7 += quantity;
+                break;
+                
+            case 8:
+                bill += 90 * quantity;
+                i8 += quantity;
+                break;
+                
+            case 9:
+                bill += 25 * quantity;
+                i9 += quantity;
+                break;
+                
+            case 10:
+                bill += 115 * quantity;
+                i10 += quantity;
+                break;
+                
+            default:
+                printf("Invalid choice!\n");
+        }
+
+        printf("Do you want to order anything else? (1 = Yes, 0 = No): ");
+        scanf("%d", &continueOrder);
+
+    } while(continueOrder == 1);
+
+    printf("\nTotal Bill Before Discount = Rs.%d\n", bill);
+
+    // Coupon System Using int
+    printf("\n------ COUPON MENU ------\n");
+    printf("1. SAVE10  (10%% Discount)\n");
+    printf("2. SAVE20  (20%% Discount)\n");
+    printf("3. FLAT50  (Rs.50 Discount)\n");
+    printf("4. No Coupon\n");
+    printf("---------------------------\n");
+
+    printf("Enter coupon choice (1-4): ");
+    scanf("%d", &couponChoice);
+
+    switch(couponChoice) {
+
+        case 1:
+            discountAmount = bill * 0.10;
+            break;
+
+        case 2:
+            discountAmount = bill * 0.20;
+            break;
+
+        case 3:
+            discountAmount = 50;
+            break;
+
+        case 4:
+            discountAmount = 0;
+            break;
+
+        default:
+            printf("Invalid coupon! No discount applied.\n");
+            discountAmount = 0;
+    }
+
+    float afterDiscount = bill - discountAmount;
+
+    
+    float serviceCharge = afterDiscount * 0.10;
+
+    
+    float gst = (afterDiscount + serviceCharge) * 0.05;
+
+    float finalAmount = afterDiscount + serviceCharge + gst;
+    printf("\nBill after adding 10%% service charges & 5%% GST: \n");
+    
+    
+
+    printf("\n------- BILL DETAILS --------\n");
+    printf(" Item      qty      price\n");   
+    if (i1 > 0){
+        printf(" Pizza      %d      %d\n", i1, i1*150);
+    }
+    if (i2 > 0){
+        printf(" Burger     %d      %d\n", i2, i2*90);
+    }
+    if (i3 > 0){
+        printf(" Pasta      %d      %d\n", i3, i3*120);
+    }
+    if (i4 > 0){
+        printf(" Sandwich   %d      %d\n", i4, i4*80);
+    }
+    if (i5 > 0){
+        printf(" Fries      %d      %d\n", i5, i5*90);
+    }   
+    if (i6 > 0){
+        printf(" Vada Pav   %d      %d\n", i6, i6*20);
+    }       
+    if (i7 > 0){
+        printf(" Taco       %d      %d\n", i7, i7*75);
+    }    
+    if (i8 > 0){
+        printf(" Salad      %d      %d\n", i8, i8*90);
+    }
+    if (i9 > 0){
+        printf(" Samosa     %d      %d\n", i9, i9*25);
+    }
+    if (i10 > 0){
+        printf(" Wrap       %d      %d\n", i10, i10*115);
+    }
+    printf("\n------------------------------\n");
+    
+    printf("Original Bill        : Rs.%d\n", bill);
+    printf("Discount             : Rs.%.2f\n", discountAmount);
+    printf("After Discount       : Rs.%.2f\n", afterDiscount);
+    printf("Service Charge (10%%) : Rs.%.2f\n", serviceCharge);
+    printf("GST (5%%)             : Rs.%.2f\n", gst);
+    printf("-------------------------------\n");
+    printf("Final Payable Amount : Rs.%.2f\n", finalAmount);
+
+    return 0;
+}
